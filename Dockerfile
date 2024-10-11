@@ -1,8 +1,15 @@
-FROM ubuntu:latest
-RUN apt update -y
-RUN apt install nginx -y
-COPY index.html /var/www/html/index.html
-COPY style.css /var/www/html/style.css
-COPY Resources/* /var/www/html/Resources/
+FROM archlinux:latest
+
+# Update package database and install nginx
+RUN pacman -Sy --noconfirm nginx
+
+# Copy files to the web server directory
+COPY index.html /usr/share/nginx/html/index.html
+COPY style.css /usr/share/nginx/html/style.css
+COPY Resources/* /usr/share/nginx/html/Resources/
+
+# Expose port 80 for the web server
 EXPOSE 80
-CMD ["nginx","-g","daemon off;"]
+
+# Start nginx in the foreground
+CMD ["nginx", "-g", "daemon off;"]
