@@ -1,7 +1,8 @@
 FROM archlinux:latest
 
 # Update package database and install nginx
-RUN pacman -Sy --noconfirm nginx
+RUN pacman -Syyu
+Run pacman -Sy --noconfirm --needed nginx
 
 # Copy files to the web server directory
 COPY index.html /usr/share/nginx/html/index.html
