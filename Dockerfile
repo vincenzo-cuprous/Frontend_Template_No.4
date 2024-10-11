@@ -1,5 +1,4 @@
 FROM ubuntu:latest
-RUN apt install sudo
 RUN apt update -y && apt upgrade -y
 RUN apt install nginx
 COPY index.html /var/www/html/index.html
